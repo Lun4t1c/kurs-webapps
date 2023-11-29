@@ -43,28 +43,36 @@ httpServer.post('/call/', async (req, res) => {
     const number1 = req.body.number;
     const number2 = process.env.DIALER_PHONE_NUMBER // tutaj dejemy swój numer
     console.log('Dzwonie', number1, number2)
-    const bridge = await dialer.call(number1, number2);
-    let oldStatus = null
-    let interval = setInterval(async () => {
-        let currentStatus = await bridge.getStatus();
-        if (currentStatus !== oldStatus) {
-            oldStatus = currentStatus
-            io.emit('status', currentStatus)
-        }
-        if (
-            currentStatus === "ANSWERED" ||
-            currentStatus === "FAILED" ||
-            currentStatus === "BUSY" ||
-            currentStatus === "NO ANSWER"
-        ) {
-            console.log('stop')
-            clearInterval(interval)
-        }
-    }, 1000)
-    res.json({
-        id: '123', status: bridge.STATUSES.NEW
-    });
-    ;
+
+    await dialer.call(number1, number2)
+        .then((result) => {
+            console.log('result: ', result);
+            const bridge = bridge;
+            let oldStatus = null
+            let interval = setInterval(async () => {
+                let currentStatus = await bridge.getStatus();
+                if (currentStatus !== oldStatus) {
+                    oldStatus = currentStatus
+                    io.emit('status', currentStatus)
+                }
+                if (
+                    currentStatus === "ANSWERED" ||
+                    currentStatus === "FAILED" ||
+                    currentStatus === "BUSY" ||
+                    currentStatus === "NO ANSWER"
+                ) {
+                    console.log('stop')
+                    clearInterval(interval)
+                }
+            }, 1000)
+            res.json({
+                id: '123', status: bridge.STATUSES.NEW
+            });
+        })
+        .catch((err) => {
+            console.error(err);
+            res.json({ id: '123', status: 'FAILED'});
+        });
 })
 
 httpServer.get('/status', async function (req, res) {

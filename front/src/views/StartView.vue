@@ -26,6 +26,9 @@ const call = async () => {
   });
 
   const response = await responseStream.json();
-  this.$router.push({ name: 'ringing', params: { callsId: response.id } });
+  if (response.status !== 'FAILED')
+    this.$router.push({ name: 'ringing', params: { callsId: response.id } });
+  else 
+    console.error('Could not call');
 };
 </script>
