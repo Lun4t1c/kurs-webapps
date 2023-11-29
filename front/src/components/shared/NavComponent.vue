@@ -1,45 +1,12 @@
 <template>
   <div class="flex fixed top-0 w-full h-16 z-20">
     <nav class="nav-containter flex flex-row bg-purple-900 text-white w-full">
-      <a class="nav-item" href="/">
-        <div class="nav-text">Home</div>
-      </a>
+      <a class="nav-item" href="/"> Home </a>
     </nav>
   </div>
 </template>
 
 <style>
-/* Assuming your base styles are reset or defined elsewhere */
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.flex {
-  display: flex;
-  background-color: #2e035f;
-}
-
-.fixed {
-  position: fixed;
-}
-
-.top-0 {
-  top: 0;
-}
-
-.w-full {
-  width: 100%;
-}
-
-.h-16 {
-  height: 4rem; /* Assuming the base font size is 16px, so 4rem equals 64px */
-}
-
-.z-20 {
-  z-index: 20;
-}
-
 .nav-container {
   display: flex;
   flex-direction: row;

@@ -4,7 +4,8 @@ import router from './router'
 import ViewManager from './services/ViewManager';
 import { createI18n } from 'vue-i18n';
 import pl from "./locales/pl.json" 
-import en from "./locales/en.json" 
+import en from "./locales/en.json"
+import './tailwind.css'
 
 const i18n = createI18n({ 
   locale: navigator.language, 
