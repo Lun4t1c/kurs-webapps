@@ -7,5 +7,9 @@
         "callInProgress": "Trwa połączenie...",
         "callStarting": "Zaraz nastąpi połączenie z konsultantem.",
         "callNow": "Zadzwoń teraz"
+    },
+    "toasts": {
+        "calling": "Dzwonię..",
+        "couldNotCall": "Połączenie się nie powiodło"
     }
 }

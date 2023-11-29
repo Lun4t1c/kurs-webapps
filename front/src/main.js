@@ -5,6 +5,7 @@ import ViewManager from './services/ViewManager';
 import { createI18n } from 'vue-i18n';
 import pl from "./locales/pl.json" 
 import en from "./locales/en.json"
+import 'vue3-toastify/dist/index.css';
 import './tailwind.css'
 
 const i18n = createI18n({ 

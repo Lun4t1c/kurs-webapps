@@ -7,5 +7,9 @@
         "callInProgress": "Call in progress...",
         "callStarting": "You will be connected to a consultant soon.",
         "callNow": "Call now"
+    },
+    "toasts": {
+        "calling": "Calling...",
+        "couldNotCall": "Could not call"
     }
 }
