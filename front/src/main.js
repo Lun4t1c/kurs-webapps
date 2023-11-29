@@ -8,7 +8,7 @@ import en from "./locales/en.json"
 import './tailwind.css'
 
 const i18n = createI18n({ 
-  locale: navigator.language, 
+  locale: navigator.language.split('-')[0], 
   fallbackLocale: "en", 
   messages: { pl, en }, 
   legacy: false 
