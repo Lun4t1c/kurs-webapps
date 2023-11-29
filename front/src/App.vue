@@ -1,9 +1,13 @@
 <template>
   <div class="window">
+    <NavComponent />
     <router-view />
   </div>
 </template>
 
+<script setup>
+  import NavComponent from './components/shared/NavComponent.vue'
+</script>
 
 <style>
 .window {
