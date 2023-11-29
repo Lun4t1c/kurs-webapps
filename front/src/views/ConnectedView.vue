@@ -1,5 +1,5 @@
 <template>
   <div class="box">
-    <div class="text">Trwa połączenie...</div>
+    <div class="text">{{ t('messages.callInProgress') }}</div>
   </div>
 </template>

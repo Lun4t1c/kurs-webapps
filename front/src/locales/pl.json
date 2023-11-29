@@ -1,0 +1,11 @@
+{
+    "messages": {
+        "enterNumber": "Wprowadź numer",
+        "callYouIn26s": "Zadzwonimy do Ciebie w ciągu 26 sekund.",
+        "tryAgain": "Spróbuj ponownie",
+        "callEnded": "Połączenie zakończone.",
+        "callInProgress": "Trwa połączenie...",
+        "callStarting": "Zaraz nastąpi połączenie z konsultantem.",
+        "callNow": "Zadzwoń teraz"
+    }
+}

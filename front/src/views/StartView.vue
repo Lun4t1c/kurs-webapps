@@ -1,17 +1,19 @@
 <template>
   <div>
-    <div class="header clearfix">Zadzwonimy do Ciebie w ciągu 26 sekund.</div>
+    <div class="header clearfix">{{ t('messages.callYouIn26s') }}</div>
     <label class="form-label clearfix" for="form-number">
-      Wprowadź numer
+      {{ t('messages.enterNumber') }}
     </label>
     <input v-model="number" class="form-number clearfix" id="form-number" />
-    <div class="call-button" @click="call">Zadzwoń teraz</div>
+    <div class="call-button" @click="call">{{ t('messages.callNow') }}</div>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n' 
 import { ref } from 'vue';
 
+const {t} = useI18n();
 const number = ref('');
 
 const call = async () => {
