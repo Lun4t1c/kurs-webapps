@@ -30,17 +30,13 @@ const serverInstance = httpServer.listen(3000,
 
 const io = new Server(serverInstance);
 
-httpServer.get('/call/:number1/:number2', (req, res) => {
-    const number1 = req.params.number1;
-    const number2 = req.params.number2;
-    dialer.call(number1, number2);
-    res.json({ success: true });
-})
-
 httpServer.post('/call/', async (req, res) => {
     const number1 = req.body.number;
     const number2 = process.env.DIALER_PHONE_NUMBER;
     console.log('Calling:', number1, number2)
+
+    // TODO remove later
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     await dialer.call(number1, number2)
         .then((result) => {
