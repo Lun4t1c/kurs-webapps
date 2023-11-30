@@ -13,6 +13,10 @@
 
       <div class="divider-h"></div>
 
+      <button class="btn-standard" @click="switchLocale('en')">English</button>
+
+      <div class="divider-h"></div>
+
       <ul>
         <li>Menu Item 1</li>
         <li>Menu Item 2</li>
@@ -37,6 +41,9 @@ export default {
     },
     updateIcon() {
       this.selectedIcon = this.isMenuHidden ? "bars" : "arrow-right";
+    },
+    switchLocale(locale) {
+      this.$i18n.locale = locale;
     },
   },
 };
