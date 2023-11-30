@@ -7,6 +7,11 @@ import pl from "./locales/pl.json"
 import en from "./locales/en.json"
 import 'vue3-toastify/dist/index.css';
 import './tailwind.css'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(fas);
 
 const i18n = createI18n({
   locale: navigator.language.split('-')[0],
@@ -17,7 +22,10 @@ const i18n = createI18n({
 
 ViewManager.checkStatus()
 
-createApp(App)
+const app = createApp(App)
   .use(router)
-  .use(i18n)
-  .mount('#app')
+  .use(i18n);
+
+app.component('font-awesome-icon', FontAwesomeIcon);
+
+app.mount('#app');

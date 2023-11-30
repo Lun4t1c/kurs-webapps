@@ -32,4 +32,10 @@ import SideMenuComponent from "./components/shared/SideMenuComponent.vue";
   border-radius: 20px;
   width: fit-content;
 }
+
+.divider-h {
+  width: 100%;
+  height: 0.2rem;
+  background-color: wheat;
+}
 </style>

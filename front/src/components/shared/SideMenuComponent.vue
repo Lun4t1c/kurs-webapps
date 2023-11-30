@@ -1,7 +1,18 @@
 <template>
   <div>
     <div :class="{ 'menu-hidden': isMenuHidden }" class="side-menu">
-      <button @click="toggleMenu">Toggle Menu</button>
+      <button @click="toggleMenu">
+        <transition name="icon-fade" mode="out-in">
+          <font-awesome-icon
+            :key="selectedIcon"
+            :icon="selectedIcon"
+            class="icon-transition h-8 text-blue-50 hover:text-blue-400"
+          />
+        </transition>
+      </button>
+
+      <div class="divider-h"></div>
+
       <ul>
         <li>Menu Item 1</li>
         <li>Menu Item 2</li>
@@ -16,11 +27,16 @@ export default {
   data() {
     return {
       isMenuHidden: false,
+      selectedIcon: "bars",
     };
   },
   methods: {
     toggleMenu() {
       this.isMenuHidden = !this.isMenuHidden;
+      this.updateIcon();
+    },
+    updateIcon() {
+      this.selectedIcon = this.isMenuHidden ? "bars" : "arrow-right";
     },
   },
 };
@@ -30,6 +46,7 @@ export default {
 .side-menu {
   width: 200px;
   height: 100%;
+  padding: 0.5rem;
   background-color: #333;
   color: white;
   position: fixed;
@@ -50,5 +67,14 @@ export default {
 
 .menu-hidden + .main-content {
   margin-right: 0;
+}
+
+/* Add styles for the transition */
+.icon-transition-enter-active,
+.icon-transition-leave-active {
+  transition: opacity 2.5s;
+}
+.icon-transition-enter, .icon-transition-leave-to /* .icon-transition-leave-active in <2.1.8 */ {
+  opacity: 0;
 }
 </style>
