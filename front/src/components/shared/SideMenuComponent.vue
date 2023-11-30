@@ -1,15 +1,12 @@
 <template>
   <div>
-    <button @click="toggleMenu">Toggle Menu</button>
     <div :class="{ 'menu-hidden': isMenuHidden }" class="side-menu">
+      <button @click="toggleMenu">Toggle Menu</button>
       <ul>
         <li>Menu Item 1</li>
         <li>Menu Item 2</li>
         <li>Menu Item 3</li>
       </ul>
-    </div>
-    <div class="main-content">
-      <p>Main Content Here</p>
     </div>
   </div>
 </template>
