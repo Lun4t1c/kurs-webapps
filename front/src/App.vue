@@ -1,16 +1,18 @@
 <template>
-  <div class="flex flex-row justify-center bg-slate-900 h-screen text-yellow-100 font-class">
+  <div
+    class="flex flex-row justify-center bg-slate-900 h-screen text-yellow-100 font-class"
+  >
     <NavComponent />
     <router-view />
   </div>
 </template>
 
 <script setup>
-  import NavComponent from './components/shared/NavComponent.vue'
+import NavComponent from "./components/shared/NavComponent.vue";
 </script>
 
 <style>
-.font-class{
+.font-class {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }

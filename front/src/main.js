@@ -3,21 +3,21 @@ import App from './App.vue'
 import router from './router'
 import ViewManager from './services/ViewManager';
 import { createI18n } from 'vue-i18n';
-import pl from "./locales/pl.json" 
+import pl from "./locales/pl.json"
 import en from "./locales/en.json"
 import 'vue3-toastify/dist/index.css';
 import './tailwind.css'
 
-const i18n = createI18n({ 
-  locale: navigator.language.split('-')[0], 
-  fallbackLocale: "en", 
-  messages: { pl, en }, 
-  legacy: false 
+const i18n = createI18n({
+  locale: navigator.language.split('-')[0],
+  fallbackLocale: "en",
+  messages: { pl, en },
+  legacy: false
 })
 
 ViewManager.checkStatus()
 
 createApp(App)
-    .use(router)
-    .use(i18n)
-    .mount('#app')
+  .use(router)
+  .use(i18n)
+  .mount('#app')

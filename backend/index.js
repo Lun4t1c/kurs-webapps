@@ -70,7 +70,7 @@ httpServer.post('/call/', async (req, res) => {
         })
         .catch((err) => {
             console.error(err);
-            res.json({ id: '123', status: 'FAILED'});
+            res.json({ id: '123', status: 'FAILED' });
         });
 })
 
