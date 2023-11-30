@@ -1,4 +1,5 @@
 require('dotenv').config()
+const { DialerMock } = require('./helpers');
 
 const express = require('express');
 const httpServer = express();
@@ -38,16 +39,17 @@ httpServer.post('/call/', async (req, res) => {
     // TODO remove later
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    await dialer.call(number1, number2)
+    const mockedDialer = new DialerMock();
+
+    await mockedDialer.call(number1, number2)
         .then((result) => {
-            console.log('result: ', result);
-            const bridge = bridge;
+            const bridge = result;
             let oldStatus = null
             let interval = setInterval(async () => {
                 let currentStatus = await bridge.getStatus();
                 if (currentStatus !== oldStatus) {
-                    oldStatus = currentStatus
-                    io.emit('status', currentStatus)
+                    oldStatus = currentStatus;
+                    io.emit('status', currentStatus);
                 }
                 if (
                     currentStatus === "ANSWERED" ||

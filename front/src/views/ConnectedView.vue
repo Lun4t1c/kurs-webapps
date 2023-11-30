@@ -1,5 +1,7 @@
 <template>
   <div class="box">
-    <div class="text">{{ t("messages.callInProgress") }}</div>
+    <div class="text-2xl text-white">
+      {{ t("messages.callInProgress") }}
+    </div>
   </div>
 </template>
