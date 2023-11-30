@@ -1,5 +1,5 @@
 <template>
-  <div class="window">
+  <div class="flex flex-row justify-center bg-slate-900 h-screen text-yellow-100 font-class">
     <NavComponent />
     <router-view />
   </div>
@@ -10,23 +10,11 @@
 </script>
 
 <style>
-.window {
-  width: 800px;
-  height: 500px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  background: rgb(255, 204, 0);
-  border-radius: 20px;
-  box-sizing: border-box;
-  padding: 20px;
-  text-align: center;
+.font-class{
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
+
 .clearfix:after {
   content: "";
   clear: both;

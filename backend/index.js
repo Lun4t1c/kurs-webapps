@@ -24,9 +24,7 @@ dialer.configure(config);
 
 const serverInstance = httpServer.listen(3000,
     function () {
-        console.log('Example app listening on port 3000!')
-        // adres url możemy wygenerować za pomocą komendy
-        // gp url 3000
+        console.log('Example app listening on port 3000!');
     }
 );
 
@@ -41,8 +39,8 @@ httpServer.get('/call/:number1/:number2', (req, res) => {
 
 httpServer.post('/call/', async (req, res) => {
     const number1 = req.body.number;
-    const number2 = process.env.DIALER_PHONE_NUMBER // tutaj dejemy swój numer
-    console.log('Dzwonie', number1, number2)
+    const number2 = process.env.DIALER_PHONE_NUMBER;
+    console.log('Calling:', number1, number2)
 
     await dialer.call(number1, number2)
         .then((result) => {
@@ -61,10 +59,11 @@ httpServer.post('/call/', async (req, res) => {
                     currentStatus === "BUSY" ||
                     currentStatus === "NO ANSWER"
                 ) {
-                    console.log('stop')
+                    console.log('Call stopped')
                     clearInterval(interval)
                 }
-            }, 1000)
+            }, 1000);
+
             res.json({
                 id: '123', status: bridge.STATUSES.NEW
             });

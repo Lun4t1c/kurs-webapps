@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col">
     <div class="header clearfix">{{ t("messages.callYouIn26s") }}</div>
     <label class="form-label clearfix" for="form-number">
       {{ t("messages.enterNumber") }}
