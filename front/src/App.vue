@@ -3,14 +3,17 @@
     class="flex flex-row justify-center bg-slate-900 h-screen text-yellow-100 font-class"
   >
     <NavComponent />
-    <div class="m-14">
+
+    <div class="flex m-14">
       <router-view />
+      <SideMenuComponent />
     </div>
   </div>
 </template>
 
 <script setup>
 import NavComponent from "./components/shared/NavComponent.vue";
+import SideMenuComponent from "./components/shared/SideMenuComponent.vue";
 </script>
 
 <style>

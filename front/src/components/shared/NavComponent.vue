@@ -1,6 +1,6 @@
 <template>
-  <div class="flex fixed top-0 w-full h-16 z-20">
-    <nav class="nav-containter flex flex-row bg-purple-900 text-white w-full">
+  <div class="flex fixed top-0 h-16 z-20 bg-purple-900 text-white w-full">
+    <nav class="nav-containter flex flex-row">
       <a class="nav-item" href="/"> Home </a>
     </nav>
   </div>
@@ -10,8 +10,8 @@
 .nav-container {
   display: flex;
   flex-direction: row;
-  background-color: #6b46c1;
-  color: #fff; 
+  background-color: #0c0a0f;
+  color: #fff;
   width: 100%;
 }
 
