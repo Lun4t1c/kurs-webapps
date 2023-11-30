@@ -1,11 +1,17 @@
 <template>
-  <div class="flex flex-col">
-    <div class="header clearfix">{{ t("messages.callYouIn26s") }}</div>
-    <label class="form-label clearfix" for="form-number">
-      {{ t("messages.enterNumber") }}
-    </label>
-    <input v-model="number" class="form-number clearfix" id="form-number" />
-    <div class="call-button" @click="call">{{ t("messages.callNow") }}</div>
+  <div class="flex flex-col p-5 m-5 rounded-lg text-2xl font-bold text-black bg-yellow-500">
+    <div class="mb-5">{{ t("messages.callYouIn26s") }}</div>
+
+    <div class="flex flex-col items-center">
+      <label class="form-label" for="form-number">
+        {{ t("messages.enterNumber") }}
+      </label>
+      <input v-model="number" class="form-number" id="form-number" />
+    </div>
+
+    <button class="btn-standard self-center m-5 px-5" @click="call">
+      {{ t("messages.callNow") }}
+    </button>
   </div>
 </template>
 

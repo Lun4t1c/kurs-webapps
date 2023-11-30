@@ -10,8 +10,8 @@
 .nav-container {
   display: flex;
   flex-direction: row;
-  background-color: #6b46c1; /* Tailwind color: bg-purple-900 */
-  color: #fff; /* Tailwind color: text-white */
+  background-color: #6b46c1;
+  color: #fff; 
   width: 100%;
 }
 
@@ -21,10 +21,8 @@
 }
 
 .nav-text {
-  padding: 1rem; /* Assuming you want some padding around the text */
+  padding: 1rem;
 }
-
-/* You can add more styles as needed */
 
 .nav-item {
   display: flex;
