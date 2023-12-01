@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col p-5 m-5 rounded-lg text-2xl font-bold text-black bg-yellow-500">
+  <div
+    class="flex flex-col p-5 m-5 rounded-lg text-2xl font-bold text-black bg-yellow-500"
+  >
     <div class="mb-5">{{ t("messages.callYouIn26s") }}</div>
 
     <div class="flex flex-col items-center">
@@ -12,17 +14,34 @@
     <button class="btn-standard self-center m-5 px-5" @click="call">
       {{ t("messages.callNow") }}
     </button>
+    <button class="btn-standard self-center m-5 px-5" @click="testCall">
+      TEST
+    </button>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
-import router from '../router'
+import router from "../router";
 import { toast } from "vue3-toastify";
 const { t } = useI18n();
 
 const number = ref("");
+
+const testCall = async () => {
+  const responseStream = await fetch(
+    `${process.env.VUE_APP_SERVER_URL}/history`,
+    {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+  );
+
+  console.log(await responseStream.json());
+};
 
 const call = async () => {
   const toastId = toast(t("toasts.calling"), {

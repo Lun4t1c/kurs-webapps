@@ -12,6 +12,7 @@ const config = {
 };
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const { MongoClient } = require('mongodb');
 
 httpServer.use(bodyParser.json());
 httpServer.use(cors());
@@ -28,6 +29,10 @@ const serverInstance = httpServer.listen(3000,
         console.log('Example app listening on port 3000!');
     }
 );
+
+const client = new MongoClient(process.env.MONGO_CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true });
+const database = client.db(process.env.MONGOD_DB_NAME);
+const callsHistoryCollection = database.collection(process.env.MONGO_HISTORY_COLLECTION_NAME);
 
 const io = new Server(serverInstance);
 
@@ -75,4 +80,8 @@ httpServer.post('/call/', async (req, res) => {
 httpServer.get('/status', async function (req, res) {
     let status = await bridge.getStatus();
     res.json({ id: '123', "status": status });
-})
+});
+
+httpServer.get('/history', async function (req, res) {
+    res.json(await callsHistoryCollection.find({}).toArray());
+});
