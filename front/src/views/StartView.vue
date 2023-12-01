@@ -18,6 +18,7 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
+import router from '../router'
 import { toast } from "vue3-toastify";
 const { t } = useI18n();
 
@@ -46,7 +47,7 @@ const call = async () => {
     });
   } else {
     toast.update(toastId, { content: "Nie działa ;(" });
-    this.$router.push({ name: "ringing", params: { callsId: response.id } });
+    router.push({ name: "ringing", params: { callsId: response.id } });
   }
 };
 </script>
