@@ -26,26 +26,25 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isMenuHidden: false,
-      selectedIcon: "bars",
-    };
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuHidden = !this.isMenuHidden;
-      this.updateIcon();
-    },
-    updateIcon() {
-      this.selectedIcon = this.isMenuHidden ? "bars" : "arrow-right";
-    },
-    switchLocale(locale) {
-      this.$i18n.locale = locale;
-    },
-  },
+<script setup>
+import { useI18n } from "vue-i18n";
+import { ref } from "vue";
+
+const i18nInstance = useI18n();
+const isMenuHidden = ref(false);
+const selectedIcon = ref("bars");
+
+const toggleMenu = () => {
+  isMenuHidden.value = !isMenuHidden.value;
+  updateIcon();
+};
+
+const updateIcon = () => {
+  selectedIcon.value = isMenuHidden.value ? "bars" : "arrow-right";
+};
+
+const switchLocale = (newLocale) => {
+    i18nInstance.locale.value = newLocale;
 };
 </script>
 
