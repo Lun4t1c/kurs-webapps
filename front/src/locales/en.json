@@ -11,5 +11,9 @@
     "toasts": {
         "calling": "Calling...",
         "couldNotCall": "Could not call"
+    },
+    "sideMenu": {
+        "callsInProgress": "Calls in progress",
+        "callsHistory": "Calls history"
     }
 }

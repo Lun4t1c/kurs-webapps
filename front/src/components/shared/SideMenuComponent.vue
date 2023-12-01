@@ -23,18 +23,17 @@
       </div>
 
       <div class="divider-h"></div>
+      <div>{{ t('sideMenu.callsInProgress') }}</div>
 
-      <ul>
-        <li>Menu Item 1</li>
-        <li>Menu Item 2</li>
-        <li>Menu Item 3</li>
-      </ul>
+      <div class="divider-h"></div>
+      <div>{{ t('sideMenu.callsHistory') }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 import { ref } from "vue";
 import PolishIcon from "../../assets/icons/polish.png";
 import EnglishIcon from "../../assets/icons/english.png";

@@ -11,5 +11,9 @@
     "toasts": {
         "calling": "Dzwonię..",
         "couldNotCall": "Połączenie się nie powiodło"
+    },
+    "sideMenu": {
+        "callsInProgress": "Rozmowy w trakcie",
+        "callsHistory": "Historia połączeń"
     }
 }
