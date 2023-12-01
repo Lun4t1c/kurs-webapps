@@ -13,7 +13,14 @@
 
       <div class="divider-h"></div>
 
-      <button class="btn-standard" @click="switchLocale('en')">English</button>
+      <div :class="{ 'flex-col': isMenuHidden, 'flex-row': !isMenuHidden }" class="flex">
+        <button class="w-6 m-1" @click="switchLocale('en')">
+          <img :src="EnglishIcon" />
+        </button>
+        <button class="w-6 m-1" @click="switchLocale('pl')">
+          <img :src="PolishIcon" />
+        </button>
+      </div>
 
       <div class="divider-h"></div>
 
@@ -29,6 +36,8 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
+import PolishIcon from "../../assets/icons/polish.png";
+import EnglishIcon from "../../assets/icons/english.png";
 
 const i18nInstance = useI18n();
 const isMenuHidden = ref(true);
@@ -44,7 +53,7 @@ const updateIcon = () => {
 };
 
 const switchLocale = (newLocale) => {
-    i18nInstance.locale.value = newLocale;
+  i18nInstance.locale.value = newLocale;
 };
 </script>
 
