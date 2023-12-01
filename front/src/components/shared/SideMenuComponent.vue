@@ -13,7 +13,30 @@
 
       <div class="divider-h"></div>
 
-      <div :class="{ 'flex-col': isMenuHidden, 'flex-row': !isMenuHidden }" class="flex">
+      <div class="flex">
+        <font-awesome-icon
+          icon="phone"
+          class="icon-transition w-6 m-1 text-blue-50 hover:text-blue-400"
+        />
+        <div>{{ t("sideMenu.callsInProgress") }}</div>
+      </div>
+
+      <div class="divider-h"></div>
+
+      <div class="flex">
+        <font-awesome-icon
+          icon="clock"
+          class="icon-transition w-6 m-1 text-blue-50 hover:text-blue-400"
+        />
+        <div>{{ t("sideMenu.callsHistory") }}</div>
+      </div>
+
+      <div class="divider-h"></div>
+
+      <div
+        :class="{ 'flex-col': isMenuHidden, 'flex-row': !isMenuHidden }"
+        class="flex"
+      >
         <button class="w-6 m-1" @click="switchLocale('en')">
           <img :src="EnglishIcon" />
         </button>
@@ -21,12 +44,6 @@
           <img :src="PolishIcon" />
         </button>
       </div>
-
-      <div class="divider-h"></div>
-      <div>{{ t('sideMenu.callsInProgress') }}</div>
-
-      <div class="divider-h"></div>
-      <div>{{ t('sideMenu.callsHistory') }}</div>
     </div>
   </div>
 </template>
