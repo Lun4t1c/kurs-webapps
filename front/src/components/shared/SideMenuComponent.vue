@@ -31,7 +31,7 @@ import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 
 const i18nInstance = useI18n();
-const isMenuHidden = ref(false);
+const isMenuHidden = ref(true);
 const selectedIcon = ref("bars");
 
 const toggleMenu = () => {
