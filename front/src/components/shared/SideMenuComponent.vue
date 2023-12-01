@@ -23,12 +23,16 @@
 
       <div class="divider-h"></div>
 
-      <div class="flex">
-        <font-awesome-icon
-          icon="clock"
-          class="icon-transition w-6 m-1 text-blue-50 hover:text-blue-400"
-        />
-        <div>{{ t("sideMenu.callsHistory") }}</div>
+      <div class="flex flex-col">
+        <div class="flex">
+          <font-awesome-icon
+            icon="clock"
+            class="icon-transition w-6 m-1 text-blue-50 hover:text-blue-400"
+          />
+          <div>{{ t("sideMenu.callsHistory") }}</div>
+        </div>
+
+        <HistoryItemComponent :historyItem="{number: '434234', date: new Date()}" />
       </div>
 
       <div class="divider-h"></div>
@@ -54,6 +58,7 @@ const { t } = useI18n();
 import { ref } from "vue";
 import PolishIcon from "../../assets/icons/polish.png";
 import EnglishIcon from "../../assets/icons/english.png";
+import HistoryItemComponent from "../shared/HistoryItemComponent.vue";
 
 const i18nInstance = useI18n();
 const isMenuHidden = ref(true);
