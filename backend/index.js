@@ -12,7 +12,7 @@ const config = {
 };
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const { v4: uuidv4 } = require('uuid');
 
 httpServer.use(bodyParser.json());
@@ -51,6 +51,17 @@ httpServer.get('/status', async function (req, res) {
 
 httpServer.get('/history', async function (req, res) {
     res.json(await callsHistoryCollection.find({}).toArray());
+});
+
+httpServer.delete('/history', async function (req, res) {
+    try {
+        const documentId = req.body.documentId;
+        await callsHistoryCollection.deleteOne({_id: new ObjectId(documentId)});
+        res.json({status: "OK"});
+    } catch (err) {
+        console.error("Could not delete");
+        res.json({status: "FAILED"});
+    }
 });
 
 async function addCallsHistoryItem(number) {

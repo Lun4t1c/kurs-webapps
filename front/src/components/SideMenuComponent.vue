@@ -38,8 +38,11 @@
           <div>{{ t("sideMenu.callsHistory") }}</div>
         </div>
 
-        <div v-for="(item, index) in callsHistory" :key="index">
-          <HistoryItemComponent :historyItem="item" />
+        <div v-for="(item, index) in callsHistory" :key="index" class="mb-1">
+          <HistoryItemComponent
+            :historyItem="item"
+            :deleteCallback="() => deleteHistoryItem(item._id)"
+          />
         </div>
       </div>
 
@@ -138,12 +141,28 @@ const fetchCallsHistory = async () => {
   }
 };
 
-const removeCallInProgress = (callId) => {
+const removeCallInProgress = async (callId) => {
   setTimeout(() => {
     callsInProgress.value = callsInProgress.value.filter(
       (call) => call.id !== callId
     );
   }, 1000);
+};
+
+const deleteHistoryItem = async (itemId) => {
+  const responseStream = await fetch(`${process.env.VUE_APP_SERVER_URL}/history`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify({ documentId: itemId }),
+  });
+
+  const response = await responseStream.json();
+  if (response.status === "OK")
+    callsHistory.value = callsHistory.value.filter(
+      (call) => call._id !== itemId
+    );
 };
 </script>
 

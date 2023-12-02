@@ -24,10 +24,25 @@ import SideMenuComponent from "./components/SideMenuComponent.vue";
   font-weight: 600;
   line-height: 75px;
   background: #008000;
-  cursor: pointer;
   color: #fff;
   border-radius: 20px;
   width: fit-content;
+}
+
+.btn-standard:hover {
+  background: rgb(6, 168, 6);
+}
+
+.btn-danger {
+  vertical-align: middle;
+  background: #850404;
+  color: #fff;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.btn-danger:hover {
+  background: #d20606;
 }
 
 .divider-h {

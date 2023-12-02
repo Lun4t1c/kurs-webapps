@@ -1,11 +1,13 @@
 <template>
-  <div class="flex flex-row">
+  <div class="flex flex-row justify-between">
     <div class="w-fit mr-5">
       {{ timePassedString }}
     </div>
     <div>
       {{ historyItem.number }}
     </div>
+
+    <button class="btn-danger px-1" @click="deleteCallback">X</button>
   </div>
 </template>
 
@@ -17,6 +19,12 @@ export default {
     historyItem: {
       type: Object,
       default: () => ({ number: 0, date: null }),
+    },
+    deleteCallback: {
+      type: Function,
+      default: () => {
+        console.error("Callback not provided");
+      },
     },
   },
   data() {
@@ -40,14 +48,10 @@ export default {
       const days = Math.floor(hours / 24);
 
       if (seconds < 60) {
-        this.timePassedString = 1 + 'm';
-      }
-      else if (minutes < 60)
-        this.timePassedString = minutes + 'm';
-      else if (hours < 24)
-        this.timePassedString = hours + 'h';
-      else 
-        this.timePassedString = days + 'd';
+        this.timePassedString = 1 + "m";
+      } else if (minutes < 60) this.timePassedString = minutes + "m";
+      else if (hours < 24) this.timePassedString = hours + "h";
+      else this.timePassedString = days + "d";
     },
 
     startSecondsInterval() {
@@ -55,10 +59,6 @@ export default {
         this.calculateTimePassed();
       }, 1000);
     },
-
-    formatTimePassedString() {
-
-    }
   },
   mounted() {
     this.calculateTimePassed();

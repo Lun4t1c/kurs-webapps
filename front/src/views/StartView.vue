@@ -66,7 +66,6 @@ const call = async () => {
     });
   } else {
     toast.update(toastId, { content: "Nie działa ;(" });
-    //router.push({ name: "ringing", params: { callsId: response.id } });
   }
 };
 </script>
