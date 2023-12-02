@@ -13,6 +13,7 @@ const config = {
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
+const { v4: uuidv4 } = require('uuid');
 
 httpServer.use(bodyParser.json());
 httpServer.use(cors());
@@ -71,6 +72,7 @@ async function handleCall(res, client_number, consultant_number) {
 
     await mockedDialer.call(client_number, consultant_number)
         .then((result) => {
+            const callId = uuidv4();
             const bridge = result;
             let oldStatus = null
             let interval = setInterval(async () => {
@@ -78,9 +80,9 @@ async function handleCall(res, client_number, consultant_number) {
                 if (currentStatus !== oldStatus) {
                     oldStatus = currentStatus;
                     if (currentStatus === "NEW")
-                        io.emit('newCall', 1, client_number);
+                        io.emit('newCall', callId, client_number);
                     else
-                        io.emit('statusUpdate', 1, currentStatus);
+                        io.emit('statusUpdate', callId, currentStatus);
                 }
                 if (
                     currentStatus === "ANSWERED" ||

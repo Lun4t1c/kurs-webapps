@@ -2,8 +2,6 @@
   <div
     class="flex flex-row justify-center bg-slate-900 h-screen text-yellow-100 font-class"
   >
-    <NavComponent />
-
     <div class="flex m-14">
       <router-view />
       <SideMenuComponent />
@@ -12,7 +10,6 @@
 </template>
 
 <script setup>
-import NavComponent from "./components/NavComponent.vue";
 import SideMenuComponent from "./components/SideMenuComponent.vue";
 </script>
 
