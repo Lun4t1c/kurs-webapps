@@ -16,7 +16,7 @@
       <div class="flex">
         <font-awesome-icon
           icon="phone"
-          class="icon-transition w-6 m-1 text-blue-50 hover:text-blue-400"
+          class="icon-transition w-6 m-1 text-blue-50"
         />
         <div>{{ t("sideMenu.callsInProgress") }}</div>
       </div>
@@ -27,7 +27,7 @@
         <div class="flex">
           <font-awesome-icon
             icon="clock"
-            class="icon-transition w-6 m-1 text-blue-50 hover:text-blue-400"
+            class="icon-transition w-6 m-1 text-blue-50"
           />
           <div>{{ t("sideMenu.callsHistory") }}</div>
         </div>
