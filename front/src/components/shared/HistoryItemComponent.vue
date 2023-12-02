@@ -39,13 +39,6 @@ export default {
       const hours = Math.floor(minutes / 60);
       const days = Math.floor(hours / 24);
 
-      console.log(`Time since ${targetDate.toDateString()}:`);
-      console.log(
-        `${days} days, ${hours % 24} hours, ${minutes % 60} minutes, ${
-          seconds % 60
-        } seconds`
-      );
-
       if (seconds < 60)
         this.timePassedString = seconds + 's';
       else if (minutes < 60)
