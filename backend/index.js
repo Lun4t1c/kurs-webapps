@@ -52,7 +52,18 @@ httpServer.get('/history', async function (req, res) {
     res.json(await callsHistoryCollection.find({}).toArray());
 });
 
+async function addCallsHistoryItem(number) {
+    const historyItem = {
+        number: number,
+        date: new Date()
+    };
+
+    await callsHistoryCollection.insertOne(historyItem);
+    io.emit('newHistoryItem', historyItem);
+}
+
 async function handleCall(res, client_number, consultant_number) {
+    addCallsHistoryItem(client_number);
     // TODO remove later
     await new Promise(resolve => setTimeout(resolve, 2000));
 

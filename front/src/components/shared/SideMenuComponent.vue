@@ -11,19 +11,23 @@
         </transition>
       </button>
 
-      <div class="divider-h"></div>
-
-      <div class="flex">
+      <div class="flex flex-col">
+        <div class="divider-h"></div>
+        
         <font-awesome-icon
           icon="phone"
           class="icon-transition w-6 m-1 text-blue-50"
         />
         <div>{{ t("sideMenu.callsInProgress") }}</div>
+
+        <div v-for="(item, index) in callsInProgress" :key="index">
+          <CallInProgressComponent :callItem="item" />
+        </div>
       </div>
 
-      <div class="divider-h"></div>
-
       <div class="flex flex-col">
+        <div class="divider-h"></div>
+
         <div class="flex">
           <font-awesome-icon
             icon="clock"
@@ -32,8 +36,8 @@
           <div>{{ t("sideMenu.callsHistory") }}</div>
         </div>
 
-        <div v-for="(item, index) in callsInProgress" :key="index">
-          <CallInProgressComponent :callItem="item" />
+        <div v-for="(item, index) in callsHistory" :key="index">
+          <HistoryItemComponent :historyItem="item" />
         </div>
       </div>
 
@@ -62,15 +66,17 @@ import io from "socket.io-client";
 import PolishIcon from "../../assets/icons/polish.png";
 import EnglishIcon from "../../assets/icons/english.png";
 import CallInProgressComponent from "../shared/CallInProgressComponent.vue";
+import HistoryItemComponent from "../shared/HistoryItemComponent.vue";
 
 const i18nInstance = useI18n();
 const isMenuHidden = ref(true);
 const selectedIcon = ref("bars");
 const callsInProgress = ref([]);
+const callsHistory = ref([]);
 
 onMounted(() => {
   startListeningStatusUpdate();
-  callsInProgress.value.push({ id: 'callId', number: 'number' });
+  fetchCallsHistory();
 });
 
 const toggleMenu = () => {
@@ -96,12 +102,42 @@ const startListeningStatusUpdate = async () => {
     callsInProgress.value.push({ id: callId, number: number });
   });
 
+  socket.on("newHistoryItem", (item) => {
+    callsHistory.value.push(item);
+  });
+
   socket.on("statusUpdate", (callId, newStatus) => {
     switch (newStatus) {
       case "NEW":
         break;
     }
   });
+};
+
+const fetchCallsHistory = async () => {
+  const response = await fetch(`${process.env.VUE_APP_SERVER_URL}/history`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    if (Array.isArray(data)) {
+      // `data` is an array of objects
+      data.forEach(x => {
+        console.log(x);
+        callsHistory.value.push(x);
+      })
+      console.log('calls', callsHistory.value);
+    } else {
+      console.error("The response data is not an array.");
+    }
+  } else {
+    console.error("Failed to fetch data from the server.");
+  }
+  //callsHistory.value = await response.json();
 };
 </script>
 
