@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { DialerMock } = require('./helpers');
+const { DialerMock } = require('./utils/DialerMocks');
 
 const express = require('express');
 const httpServer = express();
@@ -37,16 +37,28 @@ const callsHistoryCollection = database.collection(process.env.MONGO_HISTORY_COL
 const io = new Server(serverInstance);
 
 httpServer.post('/call/', async (req, res) => {
-    const number1 = req.body.number;
-    const number2 = process.env.DIALER_PHONE_NUMBER;
-    console.log('Calling:', number1, number2)
+    const client_number = req.body.number;
+    const consultant_number = process.env.DIALER_PHONE_NUMBER;
+    console.log('Calling:', client_number, consultant_number);
+    handleCall(res, client_number, consultant_number);
+})
 
+httpServer.get('/status', async function (req, res) {
+    let status = await bridge.getStatus();
+    res.json({ id: '123', "status": status });
+});
+
+httpServer.get('/history', async function (req, res) {
+    res.json(await callsHistoryCollection.find({}).toArray());
+});
+
+async function handleCall(res, client_number, consultant_number) {
     // TODO remove later
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     const mockedDialer = new DialerMock();
 
-    await mockedDialer.call(number1, number2)
+    await mockedDialer.call(client_number, consultant_number)
         .then((result) => {
             const bridge = result;
             let oldStatus = null
@@ -75,13 +87,4 @@ httpServer.post('/call/', async (req, res) => {
             console.error(err);
             res.json({ id: '123', status: 'FAILED' });
         });
-})
-
-httpServer.get('/status', async function (req, res) {
-    let status = await bridge.getStatus();
-    res.json({ id: '123', "status": status });
-});
-
-httpServer.get('/history', async function (req, res) {
-    res.json(await callsHistoryCollection.find({}).toArray());
-});
+}
