@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <p>{{ historyItem.number }} - {{ dateString }}</p>
+  <div class="flex flex-row ">
+    <div class="w-fit mr-5">
+      {{ timePassedString }}
+    </div>
+    <div>
+      {{ historyItem.number }}
+    </div>
   </div>
 </template>
 
@@ -16,6 +21,7 @@ export default {
   },
   data() {
     return {
+      timePassedString: "1 m.",
       dateString: this.historyItem.date
         ? formatDate(this.historyItem.date)
         : "",

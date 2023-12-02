@@ -63,10 +63,10 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 import { ref, onMounted } from "vue";
 import io from "socket.io-client";
-import PolishIcon from "../../assets/icons/polish.png";
-import EnglishIcon from "../../assets/icons/english.png";
-import CallInProgressComponent from "../shared/CallInProgressComponent.vue";
-import HistoryItemComponent from "../shared/HistoryItemComponent.vue";
+import PolishIcon from "../assets/icons/polish.png";
+import EnglishIcon from "../assets/icons/english.png";
+import CallInProgressComponent from "./shared/CallInProgressComponent.vue";
+import HistoryItemComponent from "./shared/HistoryItemComponent.vue";
 
 const i18nInstance = useI18n();
 const isMenuHidden = ref(true);

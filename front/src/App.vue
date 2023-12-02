@@ -12,8 +12,8 @@
 </template>
 
 <script setup>
-import NavComponent from "./components/shared/NavComponent.vue";
-import SideMenuComponent from "./components/shared/SideMenuComponent.vue";
+import NavComponent from "./components/NavComponent.vue";
+import SideMenuComponent from "./components/SideMenuComponent.vue";
 </script>
 
 <style>
