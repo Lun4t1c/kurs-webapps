@@ -32,7 +32,9 @@
           <div>{{ t("sideMenu.callsHistory") }}</div>
         </div>
 
-        <HistoryItemComponent :historyItem="{number: '434234', date: new Date()}" />
+        <div v-for="(item, index) in callsInProgress" :key="index">
+          <CallInProgressComponent :callItem="item" />
+        </div>
       </div>
 
       <div class="divider-h"></div>
@@ -55,14 +57,21 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import io from "socket.io-client";
 import PolishIcon from "../../assets/icons/polish.png";
 import EnglishIcon from "../../assets/icons/english.png";
-import HistoryItemComponent from "../shared/HistoryItemComponent.vue";
+import CallInProgressComponent from "../shared/CallInProgressComponent.vue";
 
 const i18nInstance = useI18n();
 const isMenuHidden = ref(true);
 const selectedIcon = ref("bars");
+const callsInProgress = ref([]);
+
+onMounted(() => {
+  startListeningStatusUpdate();
+  callsInProgress.value.push({ id: 'callId', number: 'number' });
+});
 
 const toggleMenu = () => {
   isMenuHidden.value = !isMenuHidden.value;
@@ -75,6 +84,24 @@ const updateIcon = () => {
 
 const switchLocale = (newLocale) => {
   i18nInstance.locale.value = newLocale;
+};
+
+const startListeningStatusUpdate = async () => {
+  const socket = io(process.env.VUE_APP_SERVER_URL, {
+    reconnection: false,
+    transports: ["websocket", "polling"],
+  });
+
+  socket.on("newCall", (callId, number) => {
+    callsInProgress.value.push({ id: callId, number: number });
+  });
+
+  socket.on("statusUpdate", (callId, newStatus) => {
+    switch (newStatus) {
+      case "NEW":
+        break;
+    }
+  });
 };
 </script>
 

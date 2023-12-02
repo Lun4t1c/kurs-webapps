@@ -66,7 +66,10 @@ async function handleCall(res, client_number, consultant_number) {
                 let currentStatus = await bridge.getStatus();
                 if (currentStatus !== oldStatus) {
                     oldStatus = currentStatus;
-                    io.emit('status', currentStatus);
+                    if (currentStatus === "NEW")
+                        io.emit('newCall', 1, client_number);
+                    else
+                        io.emit('statusUpdate', 1, currentStatus);
                 }
                 if (
                     currentStatus === "ANSWERED" ||
