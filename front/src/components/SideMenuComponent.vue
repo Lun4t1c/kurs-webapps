@@ -105,7 +105,7 @@ const startListeningStatusUpdate = async () => {
   });
 
   socket.on("newHistoryItem", (item) => {
-    callsHistory.value.push(item);
+    callsHistory.value.unshift(item);
   });
 
   socket.on("statusUpdate", (callId, newStatus) => {
@@ -126,20 +126,10 @@ const fetchCallsHistory = async () => {
 
   if (response.ok) {
     const data = await response.json();
-    if (Array.isArray(data)) {
-      // `data` is an array of objects
-      data.forEach((x) => {
-        console.log(x);
-        callsHistory.value.push(x);
-      });
-      console.log("calls", callsHistory.value);
-    } else {
-      console.error("The response data is not an array.");
-    }
+    callsHistory.value = data.sort((a, b) => new Date(b.date) - new Date(a.date));
   } else {
     console.error("Failed to fetch data from the server.");
   }
-  //callsHistory.value = await response.json();
 };
 </script>
 

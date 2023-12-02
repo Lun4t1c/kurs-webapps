@@ -39,8 +39,9 @@ export default {
       const hours = Math.floor(minutes / 60);
       const days = Math.floor(hours / 24);
 
-      if (seconds < 60)
-        this.timePassedString = seconds + 's';
+      if (seconds < 60) {
+        this.timePassedString = 1 + 'm';
+      }
       else if (minutes < 60)
         this.timePassedString = minutes + 'm';
       else if (hours < 24)
@@ -48,9 +49,20 @@ export default {
       else 
         this.timePassedString = days + 'd';
     },
+
+    startSecondsInterval() {
+      setInterval(() => {
+        this.calculateTimePassed();
+      }, 1000);
+    },
+
+    formatTimePassedString() {
+
+    }
   },
   mounted() {
     this.calculateTimePassed();
+    this.startSecondsInterval();
   },
 };
 </script>
