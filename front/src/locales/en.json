@@ -1,6 +1,6 @@
 {
     "messages": {
-        "enterNumber": "Type in number",
+        "enterNumber": "Enter number",
         "callYouIn26s": "We will call you in 26 seconds.",
         "tryAgain": "Try again",
         "callEnded": "Call has ended",
@@ -15,6 +15,7 @@
     },
     "sideMenu": {
         "callsInProgress": "Calls in progress",
-        "callsHistory": "Calls history"
+        "callsHistory": "Calls history",
+        "empty": "Empty"
     }
 }

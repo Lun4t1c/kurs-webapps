@@ -22,6 +22,9 @@
           <div>{{ t("sideMenu.callsInProgress") }}</div>
         </div>
 
+        <div v-if="callsInProgress.length === 0 && !isMenuHidden" class="c self-center">
+          {{ t("sideMenu.empty") }}
+        </div>
         <div v-for="(item, index) in callsInProgress" :key="index">
           <CallInProgressComponent :callItem="item" />
         </div>
@@ -38,6 +41,9 @@
           <div>{{ t("sideMenu.callsHistory") }}</div>
         </div>
 
+        <div v-if="callsHistory.length === 0 && !isMenuHidden" class="c self-center">
+          {{ t("sideMenu.empty") }}
+        </div>
         <div v-for="(item, index) in callsHistory" :key="index" class="mb-1">
           <HistoryItemComponent
             :historyItem="item"
@@ -150,13 +156,16 @@ const removeCallInProgress = async (callId) => {
 };
 
 const deleteHistoryItem = async (itemId) => {
-  const responseStream = await fetch(`${process.env.VUE_APP_SERVER_URL}/history`, {
-    method: "DELETE",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-    body: JSON.stringify({ documentId: itemId }),
-  });
+  const responseStream = await fetch(
+    `${process.env.VUE_APP_SERVER_URL}/history`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({ documentId: itemId }),
+    }
+  );
 
   const response = await responseStream.json();
   if (response.status === "OK")

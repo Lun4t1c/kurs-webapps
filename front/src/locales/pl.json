@@ -14,7 +14,8 @@
         "couldNotCall": "Połączenie się nie powiodło"
     },
     "sideMenu": {
-        "callsInProgress": "Rozmowy w trakcie",
-        "callsHistory": "Historia połączeń"
+        "callsInProgress": "Połaczenia w trakcie",
+        "callsHistory": "Historia połączeń",
+        "empty": "Pusto"
     }
 }
