@@ -13,12 +13,14 @@
 
       <div class="flex flex-col">
         <div class="divider-h"></div>
-        
-        <font-awesome-icon
-          icon="phone"
-          class="icon-transition w-6 m-1 text-blue-50"
-        />
-        <div>{{ t("sideMenu.callsInProgress") }}</div>
+
+        <div class="flex">
+          <font-awesome-icon
+            icon="phone"
+            class="icon-transition w-6 m-1 text-blue-50"
+          />
+          <div>{{ t("sideMenu.callsInProgress") }}</div>
+        </div>
 
         <div v-for="(item, index) in callsInProgress" :key="index">
           <CallInProgressComponent :callItem="item" />
@@ -126,11 +128,11 @@ const fetchCallsHistory = async () => {
     const data = await response.json();
     if (Array.isArray(data)) {
       // `data` is an array of objects
-      data.forEach(x => {
+      data.forEach((x) => {
         console.log(x);
         callsHistory.value.push(x);
-      })
-      console.log('calls', callsHistory.value);
+      });
+      console.log("calls", callsHistory.value);
     } else {
       console.error("The response data is not an array.");
     }

@@ -37,5 +37,7 @@ import SideMenuComponent from "./components/SideMenuComponent.vue";
   width: 100%;
   height: 0.2rem;
   background-color: wheat;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 </style>
