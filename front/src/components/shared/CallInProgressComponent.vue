@@ -23,11 +23,13 @@ export default {
   computed: {
     statusColorClass() {
       switch (this.callItem.status) {
+        case "NEW":
+        case "ANSWERED":
+          return "text-gray-500";
         case "READY":
         case "RINGING":
           return "text-blue-500";
         case "BRIDGED":
-        case "ANSWERED":
         case "CONNECTED":
           return "text-green-500";
         case "FAILED":

@@ -101,7 +101,7 @@ const startListeningStatusUpdate = async () => {
   });
 
   socket.on("newCall", (callId, number) => {
-    callsInProgress.value.push({ id: callId, number: number });
+    callsInProgress.value.push({ id: callId, number: number, status: "NEW" });
   });
 
   socket.on("newHistoryItem", (item) => {
@@ -110,10 +110,13 @@ const startListeningStatusUpdate = async () => {
 
   socket.on("statusUpdate", (callId, newStatus) => {
     callsInProgress.value = callsInProgress.value.map((call) => {
-      if (call.id === callId)
-        return { ...call, status: newStatus };
+      if (call.id === callId) return { ...call, status: newStatus };
       return call;
     });
+  });
+
+  socket.on("callStopped", (callId) => {
+    removeCallInProgress(callId);
   });
 };
 
@@ -133,6 +136,14 @@ const fetchCallsHistory = async () => {
   } else {
     console.error("Failed to fetch data from the server.");
   }
+};
+
+const removeCallInProgress = (callId) => {
+  setTimeout(() => {
+    callsInProgress.value = callsInProgress.value.filter(
+      (call) => call.id !== callId
+    );
+  }, 1000);
 };
 </script>
 

@@ -91,6 +91,7 @@ async function handleCall(res, client_number, consultant_number) {
                     currentStatus === "NO ANSWER"
                 ) {
                     console.log('Call stopped')
+                    io.emit('callStopped', callId);
                     clearInterval(interval)
                 }
             }, 1000);
