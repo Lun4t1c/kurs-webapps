@@ -109,10 +109,11 @@ const startListeningStatusUpdate = async () => {
   });
 
   socket.on("statusUpdate", (callId, newStatus) => {
-    switch (newStatus) {
-      case "NEW":
-        break;
-    }
+    callsInProgress.value = callsInProgress.value.map((call) => {
+      if (call.id === callId)
+        return { ...call, status: newStatus };
+      return call;
+    });
   });
 };
 
@@ -126,7 +127,9 @@ const fetchCallsHistory = async () => {
 
   if (response.ok) {
     const data = await response.json();
-    callsHistory.value = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+    callsHistory.value = data.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
   } else {
     console.error("Failed to fetch data from the server.");
   }

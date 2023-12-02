@@ -24,6 +24,13 @@ class BridgeMock {
         this.currentStatus = this.STATUSES.READY;
         console.log("Call status: ", this.STATUSES.READY);
 
+        const shouldFail = Math.random() < 0.3;
+        if (shouldFail) {
+            console.error("CALL FAILED");
+            this.currentStatus = this.STATUSES.FAILED;
+            return;
+        }
+
         await new Promise(resolve => setTimeout(resolve, 2000));
         this.currentStatus = this.STATUSES.RINGING;
         console.log("Call status: ", this.STATUSES.RINGING);
