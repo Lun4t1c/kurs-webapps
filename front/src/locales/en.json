@@ -6,7 +6,8 @@
         "callEnded": "Call has ended",
         "callInProgress": "Call in progress...",
         "callStarting": "You will be connected to a consultant soon.",
-        "callNow": "Call now"
+        "callNow": "Call now",
+        "enterCorrectNumber": "Wprowadź prawidłowy numer"
     },
     "toasts": {
         "calling": "Calling...",

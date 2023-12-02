@@ -33,6 +33,11 @@ import SideMenuComponent from "./components/SideMenuComponent.vue";
   background: rgb(6, 168, 6);
 }
 
+.btn-standard:disabled,
+.btn-standard[disabled]{
+	background: #636161;
+}
+
 .btn-danger {
   vertical-align: middle;
   background: #850404;
