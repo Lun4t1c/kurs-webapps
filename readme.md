@@ -24,7 +24,6 @@ MONGOD_DB_NAME="<nazwa_bazy>"
 
 MONGO_HISTORY_COLLECTION_NAME="<nazwa_kolekcji_w_bazie>"
 
-
 5. Na końcu odpalamy najpierw komendę 'node index.js' w folderze 'backend', a potem komendę 'npm run serve' w folderze 'front'
 
 6. Aplikacja powinna być dostępna po wpisaniu w przeglądarkę 'localhost:8080'
