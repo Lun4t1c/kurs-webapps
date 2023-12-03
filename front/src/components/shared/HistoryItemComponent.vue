@@ -1,13 +1,13 @@
 <template>
   <div class="flex flex-row justify-between">
-    <div class="w-fit mr-5">
+    <div class="w-1 mr-5 text-2xl">
       {{ timePassedString }}
     </div>
-    <div>
-      {{ numberString }}
+    <div class="text-2xl">
+      {{ getNumberString }}
     </div>
 
-    <button class="btn-danger px-1" @click="deleteCallback">X</button>
+    <button class="btn-danger w-fit h-fit px-1 self-center" @click="deleteCallback">X</button>
   </div>
 </template>
 
@@ -62,6 +62,11 @@ export default {
     this.calculateTimePassed();
     this.startSecondsInterval();
     this.numberString = formatPhoneNumber(this.historyItem.number);
+  },
+  computed: {
+    getNumberString() {
+      return formatPhoneNumber(this.historyItem.number)
+    },
   },
 };
 </script>

@@ -83,7 +83,7 @@ async function handleCall(res, client_number, consultant_number) {
 
     const callId = uuidv4();
     io.emit('newCall', callId, client_number);
-    await dialer.call(client_number, consultant_number)
+    await mockedDialer.call(client_number, consultant_number)
         .then((result) => {
             const bridge = result;
             let oldStatus = null

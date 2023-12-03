@@ -43,7 +43,7 @@ class BridgeMock {
         this.currentStatus = this.STATUSES.BRIDGED;
         console.log("Call status: ", this.STATUSES.BRIDGED);
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 10000));
         this.currentStatus = this.STATUSES.ANSWERED;
         console.log("Call status: ", this.STATUSES.ANSWERED);
     }

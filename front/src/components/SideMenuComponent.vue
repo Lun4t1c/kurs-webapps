@@ -6,7 +6,7 @@
           <font-awesome-icon
             :key="selectedIcon"
             :icon="selectedIcon"
-            class="icon-transition h-8 text-blue-50 hover:text-blue-400"
+            class="icon-transition h-12 text-blue-50 hover:text-blue-400"
           />
         </transition>
       </button>
@@ -17,12 +17,17 @@
         <div class="flex">
           <font-awesome-icon
             icon="phone"
-            class="icon-transition w-6 m-1 text-blue-50"
+            class="icon-transition h-10 m-1 text-blue-50"
           />
-          <div>{{ t("sideMenu.callsInProgress") }}</div>
+          <div class="ml-3 text-2xl">
+            {{ t("sideMenu.callsInProgress") }}
+          </div>
         </div>
 
-        <div v-if="callsInProgress.length === 0 && !isMenuHidden" class="c self-center">
+        <div
+          v-if="callsInProgress.length === 0 && !isMenuHidden"
+          class="self-center text-2xl"
+        >
           {{ t("sideMenu.empty") }}
         </div>
         <div v-for="(item, index) in callsInProgress" :key="index">
@@ -30,25 +35,30 @@
         </div>
       </div>
 
-      <div class="flex flex-col">
-        <div class="divider-h"></div>
+      <div class="divider-h"></div>
 
+      <div class="flex flex-col">
         <div class="flex">
           <font-awesome-icon
             icon="clock"
-            class="icon-transition w-6 m-1 text-blue-50"
+            class="icon-transition h-10 m-1 text-blue-50"
           />
-          <div>{{ t("sideMenu.callsHistory") }}</div>
+          <div class="ml-3 text-2xl">{{ t("sideMenu.callsHistory") }}</div>
         </div>
 
-        <div v-if="callsHistory.length === 0 && !isMenuHidden" class="c self-center">
+        <div
+          v-if="callsHistory.length === 0 && !isMenuHidden"
+          class="self-center text-2xl"
+        >
           {{ t("sideMenu.empty") }}
         </div>
-        <div v-for="(item, index) in callsHistory" :key="index" class="mb-1">
-          <HistoryItemComponent
-            :historyItem="item"
-            :deleteCallback="() => deleteHistoryItem(item._id)"
-          />
+        <div class="overflow-y-auto">
+          <div v-for="(item, index) in callsHistory" :key="index" class="mb-1">
+            <HistoryItemComponent
+              :historyItem="item"
+              :deleteCallback="() => deleteHistoryItem(item._id)"
+            />
+          </div>
         </div>
       </div>
 
@@ -58,10 +68,10 @@
         :class="{ 'flex-col': isMenuHidden, 'flex-row': !isMenuHidden }"
         class="flex"
       >
-        <button class="w-6 m-1" @click="switchLocale('en')">
+        <button class="w-8 m-1" @click="switchLocale('en')">
           <img :src="EnglishIcon" />
         </button>
-        <button class="w-6 m-1" @click="switchLocale('pl')">
+        <button class="w-8 m-1" @click="switchLocale('pl')">
           <img :src="PolishIcon" />
         </button>
       </div>
@@ -177,10 +187,10 @@ const deleteHistoryItem = async (itemId) => {
 
 <style>
 .side-menu {
-  width: 200px;
+  width: 300px;
   height: 100%;
   padding: 0.5rem;
-  background-color: #333;
+  background-color: #080124;
   color: white;
   position: fixed;
   top: 0;
@@ -202,12 +212,12 @@ const deleteHistoryItem = async (itemId) => {
   margin-right: 0;
 }
 
-/* Add styles for the transition */
 .icon-transition-enter-active,
 .icon-transition-leave-active {
   transition: opacity 2.5s;
 }
-.icon-transition-enter, .icon-transition-leave-to /* .icon-transition-leave-active in <2.1.8 */ {
+
+.icon-transition-enter, .icon-transition-leave-to {
   opacity: 0;
 }
 </style>

@@ -45,7 +45,7 @@ const call = async () => {
   if (isNumberValid.value) {
     const toastId = toast(t("toasts.calling"), {
       autoClose: 8000,
-      position: toast.POSITION.TOP_RIGHT,
+      position: toast.POSITION.BOTTOM_LEFT,
     });
 
     const responseStream = await fetch(
