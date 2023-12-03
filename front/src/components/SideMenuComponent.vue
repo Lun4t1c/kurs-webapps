@@ -140,20 +140,24 @@ const startListeningStatusUpdate = async () => {
 };
 
 const fetchCallsHistory = async () => {
-  const response = await fetch(`${process.env.VUE_APP_SERVER_URL}/history`, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
+  try {
+    const response = await fetch(`${process.env.VUE_APP_SERVER_URL}/history`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    callsHistory.value = data.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
-  } else {
-    console.error("Failed to fetch data from the server.");
+    if (response.ok) {
+      const data = await response.json();
+      callsHistory.value = data.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+    } else {
+      console.error("Failed to fetch data from the server.");
+    }
+  } catch (err) {
+    console.error("Failed to fetch data from the server: ", err);
   }
 };
 
@@ -217,7 +221,8 @@ const deleteHistoryItem = async (itemId) => {
   transition: opacity 2.5s;
 }
 
-.icon-transition-enter, .icon-transition-leave-to {
+.icon-transition-enter,
+.icon-transition-leave-to {
   opacity: 0;
 }
 </style>
