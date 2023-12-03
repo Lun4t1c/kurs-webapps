@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row justify-between">
-    <div class="w-1 mr-5 text-2xl">
+    <div class="w-1 ml-2 mr-5 text-2xl">
       {{ timePassedString }}
     </div>
     <div class="text-2xl">

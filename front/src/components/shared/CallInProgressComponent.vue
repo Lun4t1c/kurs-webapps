@@ -2,7 +2,7 @@
   <div class="flex flex-row">
     <font-awesome-icon
       icon="circle"
-      class="icon-transition h-8 m-1 mr-3 ml-2"
+      class="icon-transition h-8 m-1 mr-4 ml-2"
       :class="statusColorClass"
     />
 
