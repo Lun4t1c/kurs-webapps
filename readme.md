@@ -27,3 +27,18 @@ MONGO_HISTORY_COLLECTION_NAME="<nazwa_kolekcji_w_bazie>"
 5. Na końcu odpalamy najpierw komendę 'node index.js' w folderze 'backend', a potem komendę 'npm run serve' w folderze 'front'
 
 6. Aplikacja powinna być dostępna po wpisaniu w przeglądarkę 'localhost:8080'
+
+Dodatkowe zależności ponad te przedstawione na kursie:
+- tailwind css
+- mongodb
+- vue 3 toastify
+- uuid
+- dotenv
+- vue-18n
+
+Dodatkowe funkcjonalności:
+- Licznik czasu rozmowy w trakcie
+- Historia wykonanych połączeń, przechowywana w bazie danych
+- Podstawowy error handling
+- Tłumaczenia pl/en
+- Walidacja wprowadzonego numeru (wymagany jest string z 9 cyframi)
