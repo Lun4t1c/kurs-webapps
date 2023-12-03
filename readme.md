@@ -13,11 +13,17 @@ VUE_APP_SERVER_URL="http://localhost:3000"
 a w pliku 'backend/.env':
 
 DIALER_LOGIN="<login_dialera>"
+
 DIALER_PASSWORD="<haslo_dialera>"
+
 DIALER_PHONE_NUMBER="<numer_konsultanta>"
+
 MONGO_CONNECTION_STRING="<connection_string_do_bazy>"
+
 MONGOD_DB_NAME="<nazwa_bazy>"
+
 MONGO_HISTORY_COLLECTION_NAME="<nazwa_kolekcji_w_bazie>"
+
 
 5. Na końcu odpalamy najpierw komendę 'node index.js' w folderze 'backend', a potem komendę 'npm run serve' w folderze 'front'
 
