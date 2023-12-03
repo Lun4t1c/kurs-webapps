@@ -1,12 +1,8 @@
-function formatDate(date) {
-    const d = new Date(date);
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-
-    return `${day}-${month}-${year}`;
+function formatPhoneNumber(phoneNumber) {
+  const cleanedString = phoneNumber.replace(/\W/g, '');
+  return cleanedString.replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
 }
 
 module.exports = {
-    formatDate
+    formatPhoneNumber
 };

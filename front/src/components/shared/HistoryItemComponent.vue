@@ -4,7 +4,7 @@
       {{ timePassedString }}
     </div>
     <div>
-      {{ historyItem.number }}
+      {{ numberString }}
     </div>
 
     <button class="btn-danger px-1" @click="deleteCallback">X</button>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { formatDate } from "../../utils/helpers";
+import { formatPhoneNumber } from "../../utils/helpers";
 
 export default {
   props: {
@@ -29,11 +29,9 @@ export default {
   },
   data() {
     return {
+      numberString: "",
       timePassedString: "",
-      dateString: this.historyItem.date
-        ? formatDate(this.historyItem.date)
-        : "",
-    };
+    }
   },
   methods: {
     calculateTimePassed() {
@@ -63,6 +61,7 @@ export default {
   mounted() {
     this.calculateTimePassed();
     this.startSecondsInterval();
+    this.numberString = formatPhoneNumber(this.historyItem.number);
   },
 };
 </script>

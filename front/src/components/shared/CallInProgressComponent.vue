@@ -28,9 +28,9 @@ export default {
           return "text-gray-500";
         case "READY":
         case "RINGING":
+        case "CONNECTED":
           return "text-blue-500";
         case "BRIDGED":
-        case "CONNECTED":
           return "text-green-500";
         case "FAILED":
           return "text-red-500";
