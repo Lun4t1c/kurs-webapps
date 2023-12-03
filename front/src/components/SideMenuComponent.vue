@@ -11,7 +11,7 @@
         </transition>
       </button>
 
-      <div class="flex flex-col max-h-60 overflow-y-auto">
+      <div class="flex flex-col max-h-48 overflow-y-auto">
         <div class="divider-h"></div>
 
         <div class="flex">

@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row justify-between">
     <div class="w-1 ml-2 mr-5 text-2xl">
-      {{ timePassedString }}
+      {{ getTimePassedString }}
     </div>
     <div class="text-2xl">
       {{ getNumberString }}
@@ -35,6 +35,7 @@ export default {
   },
   methods: {
     calculateTimePassed() {
+      let result = '';
       const targetDate = new Date(this.historyItem.date);
       const currentDate = new Date();
 
@@ -46,15 +47,17 @@ export default {
       const days = Math.floor(hours / 24);
 
       if (seconds < 60) {
-        this.timePassedString = 1 + "m";
-      } else if (minutes < 60) this.timePassedString = minutes + "m";
-      else if (hours < 24) this.timePassedString = hours + "h";
-      else this.timePassedString = days + "d";
+        result = 1 + "m";
+      } else if (minutes < 60) result = minutes + "m";
+      else if (hours < 24) result = hours + "h";
+      else result = days + "d";
+
+      return result;
     },
 
     startSecondsInterval() {
       setInterval(() => {
-        this.calculateTimePassed();
+        this.timePassedString = this.calculateTimePassed();
       }, 1000);
     },
   },
@@ -67,6 +70,9 @@ export default {
     getNumberString() {
       return formatPhoneNumber(this.historyItem.number)
     },
+    getTimePassedString() {
+      return this.calculateTimePassed();
+    }
   },
 };
 </script>
