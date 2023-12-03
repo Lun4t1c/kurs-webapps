@@ -7,7 +7,7 @@
       {{ getNumberString }}
     </div>
 
-    <button class="btn-danger w-fit h-fit px-1 self-center" @click="deleteCallback">X</button>
+    <button class="btn-danger w-fit h-fit px-1 mr-2 self-center" @click="deleteCallback">X</button>
   </div>
 </template>
 

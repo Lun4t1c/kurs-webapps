@@ -11,7 +11,7 @@
         </transition>
       </button>
 
-      <div class="flex flex-col">
+      <div class="flex flex-col max-h-60 overflow-y-auto">
         <div class="divider-h"></div>
 
         <div class="flex">
@@ -37,7 +37,7 @@
 
       <div class="divider-h"></div>
 
-      <div class="flex flex-col">
+      <div class="flex flex-col h-3/5 overflow-y-auto">
         <div class="flex">
           <font-awesome-icon
             icon="clock"
@@ -187,7 +187,7 @@ const deleteHistoryItem = async (itemId) => {
 
 <style>
 .side-menu {
-  width: 300px;
+  width: 320px;
   height: 100%;
   padding: 0.5rem;
   background-color: #080124;

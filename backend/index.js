@@ -44,11 +44,6 @@ httpServer.post('/call/', async (req, res) => {
     handleCall(res, client_number, consultant_number);
 })
 
-httpServer.get('/status', async function (req, res) {
-    let status = await bridge.getStatus();
-    res.json({ id: '123', "status": status });
-});
-
 httpServer.get('/history', async function (req, res) {
     res.json(await callsHistoryCollection.find({}).toArray());
 });
@@ -56,11 +51,11 @@ httpServer.get('/history', async function (req, res) {
 httpServer.delete('/history', async function (req, res) {
     try {
         const documentId = req.body.documentId;
-        await callsHistoryCollection.deleteOne({_id: new ObjectId(documentId)});
-        res.json({status: "OK"});
+        await callsHistoryCollection.deleteOne({ _id: new ObjectId(documentId) });
+        res.json({ status: "OK" });
     } catch (err) {
         console.error("Could not delete");
-        res.json({status: "FAILED"});
+        res.json({ status: "FAILED" });
     }
 });
 
@@ -76,14 +71,12 @@ async function addCallsHistoryItem(number) {
 
 async function handleCall(res, client_number, consultant_number) {
     addCallsHistoryItem(client_number);
-    // TODO remove later
-    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    const mockedDialer = new DialerMock();
+    //const mockedDialer = new DialerMock();
 
     const callId = uuidv4();
     io.emit('newCall', callId, client_number);
-    await mockedDialer.call(client_number, consultant_number)
+    await dialer.call(client_number, consultant_number)
         .then((result) => {
             const bridge = result;
             let oldStatus = null
@@ -105,13 +98,11 @@ async function handleCall(res, client_number, consultant_number) {
                 }
             }, 1000);
 
-            res.json({
-                id: '123', status: bridge.STATUSES.NEW
-            });
+            res.json({ status: bridge.STATUSES.NEW });
         })
         .catch((err) => {
             console.error(err);
             io.emit('callStopped', callId);
-            res.json({ id: '123', status: 'FAILED' });
+            res.json({ status: 'FAILED' });
         });
 }
