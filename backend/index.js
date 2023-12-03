@@ -81,19 +81,17 @@ async function handleCall(res, client_number, consultant_number) {
 
     const mockedDialer = new DialerMock();
 
-    await mockedDialer.call(client_number, consultant_number)
+    const callId = uuidv4();
+    io.emit('newCall', callId, client_number);
+    await dialer.call(client_number, consultant_number)
         .then((result) => {
-            const callId = uuidv4();
             const bridge = result;
             let oldStatus = null
             let interval = setInterval(async () => {
                 let currentStatus = await bridge.getStatus();
                 if (currentStatus !== oldStatus) {
                     oldStatus = currentStatus;
-                    if (currentStatus === "NEW")
-                        io.emit('newCall', callId, client_number);
-                    else
-                        io.emit('statusUpdate', callId, currentStatus);
+                    io.emit('statusUpdate', callId, currentStatus);
                 }
                 if (
                     currentStatus === "ANSWERED" ||
@@ -113,6 +111,7 @@ async function handleCall(res, client_number, consultant_number) {
         })
         .catch((err) => {
             console.error(err);
+            io.emit('callStopped', callId);
             res.json({ id: '123', status: 'FAILED' });
         });
 }
