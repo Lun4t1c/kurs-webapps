@@ -68,10 +68,10 @@
         :class="{ 'flex-col': isMenuHidden, 'flex-row': !isMenuHidden }"
         class="flex"
       >
-        <button class="w-8 m-1" @click="switchLocale('en')">
+        <button class="w-10 m-1" @click="switchLocale('en')">
           <img :src="EnglishIcon" />
         </button>
-        <button class="w-8 m-1" @click="switchLocale('pl')">
+        <button class="w-10 m-1" @click="switchLocale('pl')">
           <img :src="PolishIcon" />
         </button>
       </div>

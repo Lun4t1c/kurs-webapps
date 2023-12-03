@@ -10,7 +10,7 @@
       </label>
       <input
         v-model="number"
-        class="form-number"
+        class="form-number text-black"
         id="form-number"
         @input="validateInput"
       />
