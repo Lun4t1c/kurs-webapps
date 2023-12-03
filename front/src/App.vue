@@ -23,14 +23,18 @@ import SideMenuComponent from "./components/SideMenuComponent.vue";
   vertical-align: middle;
   font-weight: 600;
   line-height: 75px;
-  background: #008000;
+  background: rgb(11, 72, 177);
   color: #fff;
   border-radius: 20px;
   width: fit-content;
 }
 
 .btn-standard:hover {
-  background: rgb(6, 168, 6);
+  background: rgb(9, 43, 105);
+}
+
+.btn-standard:active {
+  background: rgb(57, 92, 158);
 }
 
 .btn-standard:disabled,

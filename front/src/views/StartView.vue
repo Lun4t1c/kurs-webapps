@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col h-fit p-5 m-5 rounded-lg text-2xl font-bold text-black bg-yellow-500"
+    class="flex flex-col h-fit p-16 m-5 rounded-lg text-2xl font-bold text-wheat bg-slate-800"
   >
     <div class="mb-5">{{ t("messages.callYouIn26s") }}</div>
 
