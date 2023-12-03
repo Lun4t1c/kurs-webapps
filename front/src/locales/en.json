@@ -17,5 +17,8 @@
         "callsInProgress": "Calls in progress",
         "callsHistory": "Calls history",
         "empty": "Empty"
+    },
+    "errors": {
+        "fetchFailed": "Failed to fetch data from the server"
     }
 }

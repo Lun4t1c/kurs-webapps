@@ -83,6 +83,7 @@
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 import { ref, onMounted } from "vue";
+import { toast } from "vue3-toastify";
 import io from "socket.io-client";
 import PolishIcon from "../assets/icons/polish.png";
 import EnglishIcon from "../assets/icons/english.png";
@@ -158,6 +159,10 @@ const fetchCallsHistory = async () => {
     }
   } catch (err) {
     console.error("Failed to fetch data from the server: ", err);
+    toast.error(t("errors.fetchFailed"), {
+      autoClose: 8000,
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   }
 };
 

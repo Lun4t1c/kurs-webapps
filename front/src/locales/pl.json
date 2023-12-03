@@ -17,5 +17,8 @@
         "callsInProgress": "Połączenia w trakcie",
         "callsHistory": "Historia połączeń",
         "empty": "Pusto"
+    },
+    "errors": {
+        "fetchFailed": "Pobranie danych z serwera nie powiodło się"
     }
 }
